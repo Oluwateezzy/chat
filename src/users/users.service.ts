@@ -9,13 +9,15 @@ export class UsersService {
     @InjectRepository(User) private userRepository: Repository<User>,
   ) {}
   async findAll(): Promise<User[]> {
-    return this.userRepository.find();
+    return await this.userRepository.find();
   }
   async create() {
-    const user = this.userRepository.create({
+    const user = await this.userRepository.create({
+      email: 'olz@gmail.com',
       firstName: 'tobi',
       lastName: 'ola',
+      password: 'pass',
     });
-    return this.userRepository.save(user);
+    return await this.userRepository.save(user);
   }
 }
